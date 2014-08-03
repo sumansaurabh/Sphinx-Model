@@ -139,16 +139,17 @@
                 </goals>
                 <configuration>
                     <target name="copy and rename file">
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/dict/cmudict.0.6d" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/dict/en-cmudict.0.6d" />
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/dict/cmudict.0.6d" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/dict/en-cmu.dict" />
                                 <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/dict/alpha.dict" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/dict/en-alpha.dict" />
                                 <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/dict/digits.dict" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/dict/en-digits.dict" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/feat.params" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/en-feat.params" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/mdef" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/en-mdef" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/means" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/en-means" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/mixture_weights" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/en-mixture_weights" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/noisedict" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/en-noisedict" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/transition_matrices" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/en-transition_matrices" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/variances" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/en-variances" />
+                                
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/feat.params" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/feat.params" />
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/mdef" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/mdef" />
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/means" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/means" />
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/mixture_weights" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/mixture_weights" />
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/noisedict" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/noisedict" />
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/transition_matrices" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/transition_matrices" />
+                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/variances" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/variances" />
                                 
 
                     </target>
