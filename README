@@ -20,13 +20,16 @@ This source repository only holds the pom.xml file and folder structure of this 
 To avoid loading subversion repository with large binary files this artifact has to be build and deployed manually to retrieve precomputed models from other sites.
 
 
-## Downloading the CMU-Sphinx acoustic and language model 
+## Downloading the CMU-Sphinx acoustic, language and dictionary model 
 
-The CMU-Sphinx models are downloaded as dependency unpacked and repacked to stanbol repository
+http://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/US%20English%20Generic%20Acoustic%20Model/en-us.tar.gz/download
 
-    https://oss.sonatype.org/content/repositories/snapshots
+en-us genric Acosutic Model is used for better performance
 
-This url is defined as property in the 'pom.xml'
+https://svn.code.sf.net/p/cmusphinx/code/trunk/sphinx4/sphinx4-data/src/main/resources/edu/cmu/sphinx/models/acoustic/wsj/dict/cmudict.0.6d
+
+https://svn.code.sf.net/p/cmusphinx/code/trunk/sphinx4/sphinx4-data/src/main/resources/edu/cmu/sphinx/models/language/en-us.lm.dmp
+    
 ## NOTE
 
 Using this bundles is only an alternative of manually copying the required OpenNLP models to the '{stanbol-installation}/sling/datafiles'.

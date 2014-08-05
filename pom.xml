@@ -26,200 +26,57 @@
     
   
     <groupId>org.apache.stanbol</groupId>
-    <artifactId>org.apache.stanbol.data.sphinx.model.wsj</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>bundle</packaging>
+  <artifactId>apache-stanbol-data</artifactId>
+  <version>1.2.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
     
-  <name>Apache Stanbol Data: Model files Sphinx</name>
+  <name>Apache Stanbol Data</name>
   <description>
-      This contains Language and Acoustic model for processing Voice Data. 
-      
-      Acoustic Model is a Wall Street Journal Model File. Features used to train the models were computed from broadband 16 bit
-      sampled data sampled at 16Khz. The features were 13 dimensional cepstra computed from 40 mel filters covering the frequency range 130Hz to
-      6800Hz. The feature type used was 1s_c_d_dd.
-      
-      Language Model containg en-us.lm.dmp language model file.
-      
-      Contents of this directory:
-      
-      Acoustic model (mdef,means, variances, transition_matrices, mixture_weights, noisedict, feat.params) and a dictionaries (alpha.dict, cmudict.0.6d, digits.dict)
-      Language model (en-us.lm.dmp)
-  </description>
-  <inceptionYear>2014</inceptionYear>
-  <properties>
-    
-    <!-- define the path to/home of the OpenNLP modles-->
-    <sphinx.model.path>${project.basedir}/src/main/resources/</sphinx.model.path>
-  </properties>
-  <repositories>
-    <repository>
-        <id>snapshots-repo</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <releases><enabled>false</enabled></releases>
-        <snapshots><enabled>true</enabled></snapshots>
-    </repository>
-  </repositories>
-  <dependencies>
-    
-    
-    <dependency>
-        <groupId>edu.cmu.sphinx</groupId>
-        <artifactId>sphinx4-data</artifactId>
-        <version>1.0-SNAPSHOT</version>
-          <type>jar</type>
-    </dependency>
-  </dependencies>
-    <build>
-        
-    <plugins>
-        
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.2</version>
-            <executions>
-                <execution>
-                    <id>Unpack-sphinx4:Model</id>
-                    <!--To make it execute before maven-bundle-plugin
-                         Since the dependency plugin definition comes before the bundle plugin
-                         definition in the pom file, the dependency plugin will run before the 
-                         bundle plugin during the process-classes phase.
-                    -->
-                    <phase>process-classes</phase>
-                    <goals>
-                        <goal>unpack-dependencies</goal>
-                    </goals>
-                    <configuration>
-                        <includeGroupIds>edu.cmu.sphinx</includeGroupIds>
-                        <includeArtifactIds>sphinx4-data</includeArtifactIds>
-                        <outputDirectory>${sphinx.model.path}</outputDirectory>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-        <!--
-        <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.6</version>
-        <executions>
-          <execution>
-            <id>copy-resources</id>
-            
-            <phase>test</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/</outputDirectory>
-              <resources>          
-                <resource>
-                  <directory>${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj</directory>
-                  <filtering>true</filtering>
-                </resource>
-              </resources>              
-            </configuration>            
-          </execution>
-          
-    
-        </executions>
-      </plugin>
-      -->
-      
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-            
-            <execution>
-                <id>delete-resources-1</id>
-                <phase>test</phase>
-                <goals>
-                    <goal>run</goal>
-                </goals>
-                <configuration>
-                    <target name="copy and rename file">
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/dict/cmudict.0.6d" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/dict/en-cmu.dict" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/dict/alpha.dict" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/dict/en-alpha.dict" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/dict/digits.dict" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/dict/en-digits.dict" />
-                                
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/feat.params" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/feat.params" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/mdef" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/mdef" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/means" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/means" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/mixture_weights" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/mixture_weights" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/noisedict" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/noisedict" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/transition_matrices" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/transition_matrices" />
-                                <copy file="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/wsj/variances" tofile="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/variances" />
-                                
+    Pseudo project to build the complete Apache Stanbol Data bundles
+  </description>  
 
-                    </target>
-                    
-                </configuration>
-            </execution>
-            <execution>
-                <id>delete-resources-2</id>
-                <phase>test</phase>
-                <goals>
-                    <goal>run</goal>
-                </goals>
-                <configuration>
-                    
-                    <target name="delete">  
-                        <delete includeEmptyDirs="true">  
-                            <fileset dir="${sphinx.model.path}/edu/cmu/sphinx/models/acoustic/" casesensitive="false">
-                                <!--  
-                                <include name="dict/alpha.dict" />
-                                <include name="dict/digits.dict" />
-                                <include name="dict/cmudict.0.6d" />
-                                -->
-                                <include name="wsj/**" />
-                                <include name="tidigits/**" />
-                                <include name="wsj_8kHz/**" />
-                            </fileset>  
-                        </delete>  
-                    </target>  
-                </configuration>
-            </execution>
-            
-        </executions>
-    </plugin>
+  <inceptionYear>2010</inceptionYear>
+  <licenses>
+    <license>
+      <name>Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>  
 
-      
-        
-        <plugin>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>maven-bundle-plugin</artifactId>
-            <configuration>
-                <instructions>
-                    <_versionpolicy>$${version;===;${@}}</_versionpolicy>
-
-                    <!-- 
-                        Extension used to provide files in that directory to the
-                        DataFileProvider
-                    -->
-                    <Data-Files>${sphinx.model.path}</Data-Files>
-                    <!-- 
-                        Use a priority lower than 0 to allow providers without a
-                        defined ranking to override this default data.
-                    -->
-                    <Data-Files-Priority>-100</Data-Files-Priority>
-                </instructions>
-            </configuration>
-        </plugin>
-        
-        
-    </plugins>
-    
-    <resources>
-            <resource>
-                <directory>${sphinx.model.path}/edu/cmu/sphinx/models/</directory>
-                
-                <includes>
-                     <include>acoustic/**</include>
-                    <include>language/**</include>
-                </includes>
-            </resource>
-    </resources>
-      
-    </build>
+  <scm>
+    <connection>
+      scm:svn:http://svn.apache.org/repos/asf/stanbol/trunk/data
+    </connection>
+    <developerConnection>
+      scm:svn:https://svn.apache.org/repos/asf/stanbol/trunk/data
+    </developerConnection>
+    <url>http://stanbol.apache.org/</url>
+  </scm>
+  
+  <modules>
+    <module>acoustic</module>
+    <module>dictionary</module>
+    <module>language</module>
+  </modules>
+  
+  
+ 
+    <profiles>
+    <profile>
+      <id>apache-release</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.rat</groupId>
+            <artifactId>apache-rat-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>    
+  </profiles>
 </project>
