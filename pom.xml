@@ -56,7 +56,6 @@
   </scm>
   
   <modules>
-    <module>acoustic</module>
     <module>dictionary</module>
     <module>language</module>
   </modules>
