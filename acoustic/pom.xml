@@ -43,7 +43,9 @@
   <properties>
         <sphinx.model.path>org/apache/stanbol/data/sphinx</sphinx.model.path>
         <sphinx.model.acoustic>
-            http://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/US%20English%20Generic%20Acoustic%20Model/en-us.tar.gz
+          <!-- Takes large time to download and extract, so for time being acosutic model files are dwonloaded from https://xp-dev.com/svn/sphinxmodel/trunk/-->
+          <!--http://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/US%20English%20Generic%20Acoustic%20Model/en-us.tar.gz-->
+          https://sphinx-model.googlecode.com/svn/trunk
         </sphinx.model.acoustic>
         
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -84,7 +86,7 @@
               <goal>run</goal>
             </goals>
           </execution>
-          
+          <!--
           <execution>
             <id>process-acoustic</id>
             <phase>generate-resources</phase>
@@ -102,7 +104,7 @@
               <goal>run</goal>
             </goals>
           </execution>
-          
+          -->
         </executions>
       </plugin>
         
@@ -121,7 +123,7 @@
                         Extension used to provide files in that directory to the
                         DataFileProvider
                     -->
-                    <Data-Files>${sphinx.model.path}/en-us</Data-Files>
+                    <Data-Files>${sphinx.model.path}</Data-Files>
                     <!-- 
                         Use a priority lower than 0 to allow providers without a
                         defined ranking to override this default data.

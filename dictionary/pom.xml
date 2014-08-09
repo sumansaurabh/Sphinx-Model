@@ -42,7 +42,8 @@
         <sphinx.model.path>org/apache/stanbol/data/sphinx</sphinx.model.path>
         
         <sphinx.model.dict>
-            https://svn.code.sf.net/p/cmusphinx/code/trunk/sphinx4/sphinx4-data/src/main/resources/edu/cmu/sphinx/models/acoustic/wsj/dict/cmudict.0.6d        
+            <!--https://svn.code.sf.net/p/cmusphinx/code/trunk/sphinx4/sphinx4-data/src/main/resources/edu/cmu/sphinx/models/acoustic/wsj/dict/cmudict.0.6d-->
+            https://sphinx-model.googlecode.com/svn/trunk/en-cmu.dict
         </sphinx.model.dict>
         
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -83,7 +84,7 @@
               <goal>run</goal>
             </goals>
           </execution>
-          
+          <!--
           <execution>
             <id>process-dictionary</id>
             <phase>generate-resources</phase>
@@ -104,7 +105,7 @@
               <goal>run</goal>
             </goals>
           </execution>
-          
+          -->
         </executions>
       </plugin>
         

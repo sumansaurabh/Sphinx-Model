@@ -43,8 +43,7 @@
         <sphinx.model.path>org/apache/stanbol/data/sphinx</sphinx.model.path>
         
         <sphinx.model.lang>
-          https://sphinx-model.googlecode.com/svn/trunk/en-us.lm.dmp
-            <!--https://svn.code.sf.net/p/cmusphinx/code/trunk/sphinx4/sphinx4-data/src/main/resources/edu/cmu/sphinx/models/language/en-us.lm.dmp-->
+            https://svn.code.sf.net/p/cmusphinx/code/trunk/sphinx4/sphinx4-data/src/main/resources/edu/cmu/sphinx/models/language/en-us.lm.dmp
         </sphinx.model.lang>
         
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
