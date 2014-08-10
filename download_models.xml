@@ -30,7 +30,9 @@
 
         <url url="${model.url}/transition_matrices"/>
         <url url="${model.url}/variances"/>
-      
+        <url url="${model.url}/en-cmu.dict"/>
+        <url url="${model.url}/en-us.lm.dmp"/>
+    
       <!--<url url="${model.url}"/>-->
 
       </resources>

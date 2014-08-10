@@ -26,56 +26,117 @@
     
   
     <groupId>org.apache.stanbol</groupId>
-  <artifactId>apache-stanbol-data</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <artifactId>org.apache.stanbol.data.sphinx.model</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>bundle</packaging>
     
-  <name>Apache Stanbol Data</name>
+  <name>Apache Stanbol Data: Model files Sphinx</name>
   <description>
-    Pseudo project to build the complete Apache Stanbol Data bundles
-  </description>  
-
-  <inceptionYear>2010</inceptionYear>
-  <licenses>
-    <license>
-      <name>Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-      <comments>A business-friendly OSS license</comments>
-    </license>
-  </licenses>  
-
-  <scm>
-    <connection>
-      scm:svn:http://svn.apache.org/repos/asf/stanbol/trunk/data
-    </connection>
-    <developerConnection>
-      scm:svn:https://svn.apache.org/repos/asf/stanbol/trunk/data
-    </developerConnection>
-    <url>http://stanbol.apache.org/</url>
-  </scm>
+      This contains processing Voice Data. Tar file is downloaded and extracted to en-us.
+      
+      Contents of the tar are:
+      Acoustic model (mdef,means, variances, transition_matrices, mixture_weights, noisedict, feat.params) 
+      
+  </description>
+  <inceptionYear>2014</inceptionYear>
   
-  <modules>
-    <module>dictionary</module>
-    <module>language</module>
-  </modules>
+  <properties>
+        <sphinx.model.path>org/apache/stanbol/data/sphinx</sphinx.model.path>
+        <sphinx.model>
+          <!-- Takes large time to download and extract, so for time being acosutic model files are dwonloaded from https://xp-dev.com/svn/sphinxmodel/trunk/-->
+          <!--http://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Models/US%20English%20Generic%20Acoustic%20Model/en-us.tar.gz-->
+          https://sphinx-model.googlecode.com/svn/trunk
+        </sphinx.model>
+        
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
   
   
  
-    <profiles>
-    <profile>
-      <id>apache-release</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.rat</groupId>
-            <artifactId>apache-rat-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>    
-  </profiles>
+    <build>
+        
+    <plugins>
+        
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        
+        <executions>
+          
+          
+          
+          <execution>
+            <id>download-acoustic</id>
+            <phase>generate-resources</phase>
+            <configuration>
+              <target>
+                <property name="target.directory" value="${project.basedir}/downloads/resources/${sphinx.model.path}" />
+                <property name="model.url" value="${sphinx.model}" />
+                                
+                <echo message="copy Acoustic models" />
+                <echo message=" FROM ${model.url} " />
+                <echo message=" TO ${target.directory}" />
+
+                <ant antfile="${basedir}/download_models.xml">
+                  <target name="download" />
+                </ant>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <!-- 
+          <execution>
+            <id>process-acoustic</id>
+            <phase>generate-resources</phase>
+            <configuration>
+                <target>
+              <echo message="Unpacking dependency" />
+              
+              <untar src="${project.basedir}/downloads/resources/${sphinx.model.path}/en-us.tar.gz" 
+                     dest="${project.basedir}/downloads/resources/${sphinx.model.path}" compression="gzip"/>
+              <echo message="Deleting Unused file" />
+              <delete file="${project.basedir}/downloads/resources/${sphinx.model.path}/en-us.tar.gz" quiet="true"></delete>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          -->
+        </executions>
+      </plugin>
+        
+      
+      
+      
+        
+        <plugin>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <configuration>
+                <instructions>
+                    <_versionpolicy>$${version;===;${@}}</_versionpolicy>
+
+                    <!-- 
+                        Extension used to provide files in that directory to the
+                        DataFileProvider
+                    -->
+                    <Data-Files>${sphinx.model.path}</Data-Files>
+                    <!-- 
+                        Use a priority lower than 0 to allow providers without a
+                        defined ranking to override this default data.
+                    -->
+                    <Data-Files-Priority>-100</Data-Files-Priority>
+                </instructions>
+            </configuration>
+        </plugin>
+        
+        
+    </plugins>
+    
+    
+      
+    </build>
 </project>
